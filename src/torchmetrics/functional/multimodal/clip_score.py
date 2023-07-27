@@ -68,7 +68,7 @@ def _clip_score_update(
 
     max_length = 77  # max sequence length for clip text model
     txt_features = model.get_text_features(
-        processed_input["input_ids"][:max_length].to(device), processed_input["attention_mask"][:max_length].to(device)
+        processed_input["input_ids"][:, :max_length].to(device), processed_input["attention_mask"][:, :max_length].to(device)
     )
     txt_features = txt_features / txt_features.norm(p=2, dim=-1, keepdim=True)
 
